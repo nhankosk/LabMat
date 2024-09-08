@@ -40,14 +40,50 @@
             background-color: #218838;
         }
     </style>
+    <script>
+        function enviarFormulario(event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+
+            const url = 'https://script.google.com/macros/s/{WEB_APP_URL}/exec'; // Substitua {WEB_APP_URL} pelo URL gerado do Google Apps Script
+
+            // Cria um objeto que conterá os dados do formulário
+            const formData = {
+                nome: document.getElementById('nome').value,
+                turma: document.getElementById('turma').value,
+                dataEmprestimo: document.getElementById('data_emprestimo').value,
+                dataDevolucao: document.getElementById('data_devolucao').value,
+                item: document.getElementById('item').value,
+                quantidade: document.getElementById('quantidade').value
+            };
+
+            // Faz a requisição POST usando o método fetch
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // Envia os dados como JSON
+                },
+                body: JSON.stringify(formData) // Converte os dados para JSON
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert('Dados enviados com sucesso!');
+                console.log(result);
+                event.target.reset(); // Limpa o formulário após o envio
+            })
+            .catch(error => {
+                alert('Erro ao enviar os dados.');
+                console.error('Erro:', error);
+            });
+        }
+    </script>
 </head>
 <body>
 
     <h1>Formulário de Empréstimos</h1>
-    <p>Preencha os dados abaixo para realizar o empréstimo de jogos ou materiais. Após o preenchimento, as informações serão enviadas para o servidor.</p>
-
+    <p>Preencha os dados abaixo para realizar o empréstimo de jogos ou materiais. Após o preenchimento, as informações serão enviadas para a planilha.</p>
+    
     <!-- Formulário de Empréstimo -->
-    <form action="processa_emprestimo.php" method="POST">
+    <form id="form-emprestimo" onsubmit="enviarFormulario(event)">
         <label for="nome">Nome</label>
         <input type="text" id="nome" name="nome" required>
 
