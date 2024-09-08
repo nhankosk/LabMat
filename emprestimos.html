@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empréstimos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="date"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Formulário de Empréstimos</h1>
+    <p>Preencha os dados abaixo para realizar o empréstimo de jogos ou materiais. Após o preenchimento, as informações serão enviadas para o servidor.</p>
+
+    <!-- Formulário de Empréstimo -->
+    <form action="processa_emprestimo.php" method="POST">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="turma">Turma</label>
+        <input type="text" id="turma" name="turma" required>
+
+        <label for="data_emprestimo">Data de Empréstimo</label>
+        <input type="date" id="data_emprestimo" name="data_emprestimo" required>
+
+        <label for="data_devolucao">Data de Devolução</label>
+        <input type="date" id="data_devolucao" name="data_devolucao" required>
+
+        <label for="item">Item</label>
+        <select id="item" name="item" required>
+            <option value="">Selecione um item</option>
+            <option value="Jogo 1">Jogo 1</option>
+            <option value="Jogo 2">Jogo 2</option>
+            <option value="Material 1">Material 1</option>
+            <option value="Material 2">Material 2</option>
+        </select>
+
+        <label for="quantidade">Quantidade</label>
+        <select id="quantidade" name="quantidade" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+</body>
+</html>
